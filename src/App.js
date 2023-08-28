@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Authorpage from "./components/authoresperdonal";
+import Home from "./components/home";
+import LoginPage from "./components/login/loginpage";
+import Fav from "./components/favourite";
+import Protected from "./components/login/protected";
+import { Newstate } from "./components/context/context";
+import Authors from "./components/authors";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Newstate>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/fav" element={<Protected Component={Fav} />} />
+          <Route path="/author" element={<Authorpage />} />
+          <Route path="/authordetail/:id" element={<Authors />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </Newstate>
     </div>
   );
 }
