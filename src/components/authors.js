@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Newcontext } from "./context/context";
-function Authors({ id }) {
+function Authors() {
+  const params = useParams();
+  const { id } = params;
   console.log(id);
-  // const params = useParams();
-  // const { id } = params;
   const [post, setpost] = useState([]);
   const info = useContext(Newcontext);
-  // console.log(info)
+
   useEffect(() => {
     setpost(info);
   }, [info]);
-  const Title = post[id - 1];
+  const Title = post[id];
   console.log(Title);
 
   return (
